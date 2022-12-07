@@ -1,0 +1,231 @@
+*{
+  font-family: hebrew;
+}
+
+body{
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.pageContainer{
+  margin-top: 10vh;
+  height: 90vh;
+  overflow-y: auto;
+}
+
+
+/* The ingredients */
+.ingredients {
+    display: block;
+    position: relative;
+    padding-right: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .ingredients input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .ingredients:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .ingredients input:checked ~ .checkmark {
+    background-color: #2196F3;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .ingredients input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .ingredients .checkmark:after {
+    right: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+  @font-face {
+    font-family: hebrew;
+    src: url(../static/fonts/journal.zip);
+}
+
+
+  .breakfast { grid-area: breakfast;  }
+  .lunch { grid-area: lunch;  }
+  .dinner { grid-area: dinner;  }
+
+  .RecipesContainer {
+    text-align: center;
+    display: grid;
+    grid-template-areas: 
+    'breakfast'
+    'lunch'
+    'dinner';
+  }
+
+  .sectionContainer{
+    width: 98%;
+    border-style: solid;
+    padding: 1px;
+    margin: 1px;
+    border-radius: 4px;
+
+
+  }
+  
+
+  button{
+    background-color: black;
+    color: white;
+    display: inline-block;
+    cursor:pointer ;
+  }
+
+
+  .yogurt {
+    background-image: url("../static/pictures/yogurt.jpg"); 
+  }
+
+  .shakshuka{
+    background-image: url("../static/pictures/shakshuka.jpg");
+  }
+
+  
+  .omelet{
+    background-image: url("../static/pictures/omelet.jpg"); 
+  }
+
+  .frenchToast{
+    background-image: url("../static/pictures/frenchToast.jpg"); 
+  }
+
+  .RecipesBackground{
+    background-position: center;
+    background-size: cover ;
+    background-repeat: no-repeat;
+    background-attachment: local;
+    height: 150px;
+    text-align: center;
+    width: 95%;
+    border-style: solid;
+    padding: 1px;
+    margin: 1px;
+    align-items: middle;
+    display: flex;
+  }
+
+  .Otext{
+    background-color: rgb(255, 255, 255, 0.5);
+    margin:auto;
+    width: 70%;
+    height: 55%;
+    border: 0.5px solid rgb(255, 255, 255);
+    padding: 5px;
+    align-items: center;
+
+  }
+
+  .yogurt:hover{
+    background-color: #ccc;
+    opacity: 0.5;
+    transition: o.8s;
+
+
+  }
+
+  .navBar {
+    list-style-type: none;
+    margin:0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    height: 10vh;
+
+  }
+  
+  .navBarItem {
+    float: left;
+    height: 100%;
+    margin: auto;
+  }
+  
+  .navBarItem .navBarLink {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  .navBarItem .index:hover:not(.active) {
+    background-color: rgb(17, 17, 17, 0.4);
+  }
+  
+  .active {
+    background-color: #04AA6D;
+  }
+
+section{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: url(../static/pictures/frenchToast.jpg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section h2{
+  font-size: 16vw;
+  color: white;
+}
+
+
+
+
+

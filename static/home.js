@@ -6,6 +6,8 @@ function changeBg(){
         'url("../static/pictures/pasta.jpg")',
         'url("../static/pictures/pizzapita.jpg")',
         'url("../static/pictures/shakshuka.jpg")',
+        'url("../static/pictures/yogurt.jpg")',
+
     ]
 
     const section = document.querySelector('section');

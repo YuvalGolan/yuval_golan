@@ -1,5 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
+
 *{
-  font-family: hebrew;
+  font-family: 'Amatic SC', cursive;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(197, 186, 136); 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background:  rgb(148, 139, 100); 
 }
 
 body{
@@ -9,11 +33,52 @@ body{
 }
 
 .pageContainer{
-  margin-top: 10vh;
-  height: 90vh;
+  margin-top: 9vh;
+  height: 91vh;
   overflow-y: auto;
+  text-align: center;
 }
 
+.pageContainer h2{
+  text-shadow: 2px 4px 4px rgb(0, 0, 0, 0.6);
+} 
+
+.pageContainer h1{
+  text-shadow: 2px 2px 4px rgb(0, 0, 0, 0.6);
+} 
+
+
+.ingredientsContainer{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+  justify-content: space-around;
+  padding: 6px;
+  box-sizing: border-box;
+}
+
+.inSection{
+  border-style: solid;
+  padding: 8px;
+  border-radius: 4px;
+  width: 30%;
+  border-color: transparent;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  height: 40vh;
+}
+
+.inSection h3{
+  text-align: center;
+  font-size: 25px ;
+  margin-top: 4%;
+}
+
+.inInnerSection{
+  height: 72%;
+  overflow-y: auto;
+  text-align: right;
+}
 
 /* The ingredients */
 .ingredients {
@@ -104,12 +169,11 @@ body{
 
   .sectionContainer{
     width: 98%;
+    max-width: 750px;
     border-style: solid;
     padding: 1px;
     margin: 1px;
     border-radius: 4px;
-
-
   }
   
 
@@ -143,6 +207,7 @@ body{
     background-size: cover ;
     background-repeat: no-repeat;
     background-attachment: local;
+    border-radius: 3px;
     height: 150px;
     text-align: center;
     width: 95%;
@@ -153,8 +218,13 @@ body{
     display: flex;
   }
 
+  .Recipes{
+    padding: 0;
+  }
+
   .Otext{
     background-color: rgb(255, 255, 255, 0.5);
+    border-radius: 3px;
     margin:auto;
     width: 70%;
     height: 55%;
@@ -164,15 +234,15 @@ body{
 
   }
 
-  .yogurt:hover{
+  .Otext:hover{
     background-color: #ccc;
-    opacity: 0.5;
+    opacity: 0.6;
     transition: o.8s;
-
-
   }
 
   .navBar {
+    display: flex;
+    flex-direction: row-reverse;
     list-style-type: none;
     margin:0;
     padding: 0;
@@ -182,14 +252,14 @@ body{
     top: 0;
     width: 100%;
     z-index: 1000;
-    height: 10vh;
+    height: 9vh;
+    justify-content: left;
 
   }
   
   .navBarItem {
-    float: left;
     height: 100%;
-    margin: auto;
+    font-size: 17px;
   }
   
   .navBarItem .navBarLink {
@@ -198,14 +268,22 @@ body{
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    height: 100%;
   }
   
   .navBarItem .index:hover:not(.active) {
     background-color: rgb(17, 17, 17, 0.4);
   }
+
+  .navBarItem:hover{
+    color: #ccc;
+    opacity: 0.6;
+  }
+    
+  
   
   .active {
-    background-color: #04AA6D;
+    background-color: rgb(197, 186, 136);
   }
 
 section{
@@ -218,14 +296,88 @@ section{
   display: flex;
   justify-content: center;
   align-items: center;
+  background-position: center;
+  background-size: cover ;
+  background-repeat: no-repeat;
+  background-attachment: local;
+  -webkit-transition: background-image 0.2s ease-in-out; transition: background-image 0.2s ease-in-out;
 }
 
 section h2{
   font-size: 16vw;
   color: white;
 }
+section button{
+  position: absolute;
+  left:45%;
+  bottom: 6em;
+  width: 110px;
+  height: 7%;
+  font-size: 20px;
+}
 
 
+/*specific recipe page*/
+
+.Rcontainer{
+  display: grid;
+  grid-template-areas: 
+  'header header'
+  'right1 left'
+  'right2 left';
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  margin-top: 10vh;
+  height: 90vh;
+  padding: 5px;
+  gap: 10px;
+  overflow-y: auto ;
+}
+
+.inItem{
+  margin-right: 4px;
+}
+
+.RecipeTitle {
+  grid-area: header;
+  text-align: center;
+  font-size: 4vh;
+  color: black;
+  text-shadow: 2px 2px 4px rgb(0, 0, 0, 0.6);
+}
+
+.RecipeIngredients {
+  grid-area: right1;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 4px;
+  font-size: 20px;
+  padding: 8px;
+}
+.RecipeMaking {
+  grid-area: right2;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;  font-size: 20px;
+  border-radius: 4px;
+  padding: 8px;
+}
+ 
+@media only screen and (max-width:650px) {
+    .Rcontainer {
+        display: grid;
+        grid-template-areas: 
+        'header header'
+        'right1 left'
+        'right2 right2';
+        }
+}
+
+.DishImage {
+  grid-area: left;
+  size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 
 

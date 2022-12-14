@@ -6,13 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/styleSheet.css">
     <title>הרודס מתכונים | מצרכים</title>
+    <script defer src="../static/ingredientsJS.js"></script>
+    <script defer src="../static/main.js"></script>
 </head>
 <body>
     <ul class="navBar">
         <li class="navBarItem">
             <a href="../views/html- index.html" class="navBarLink">Home</a>
         </li>
-        <li class="navBarItem active" >
+        <li class="navBarItem" >
             <a href="../views/Ingredients.html" class="navBarLink">ingredients</a>
         </li>
         <li class="navBarItem">
@@ -23,20 +25,11 @@
         <div class="title">
             <h1>יש לי במקרר</h1>
         </div>
-        <div class=" ingredients">
-            <label class=" ingredients">ביצים
-                <input type="checkbox" >
-                <span class="checkmark"></span>
-            </label>
-            <label class=" ingredients">לחם
-                <input type="checkbox" >
-                <span class="checkmark"></span>
-            </label>
-            <label class=" ingredients">גבינה צהובה
-                <input type="checkbox" >
-                <span class="checkmark"></span>
-            </label>
+        <div class="ingredientsContainer">
         </div>
+        <a href="../views/Recipes.html">
+            <button class="toIngredients"> מצא לי מתכון</button>
+        </a>
     </div>
 </body>
 </html>

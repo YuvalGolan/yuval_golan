@@ -5,12 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/styleSheet.css">
-    <script src="../static/JS.js"></script>
+    <script defer src="../static/home.js"></script>
     <title>הרודס מתכונים</title>
+    <script defer src="../static/main.js"></script>
 </head>
 <body>
     <ul class="navBar">
-        <li class="navBarItem active">
+        <li class="navBarItem">
             <a href="../views/html- index.html" class="navBarLink">Home</a>
         </li>
         <li class="navBarItem">
@@ -20,13 +21,18 @@
             <a href="../views/Recipes.html" class="navBarLink">Recipes</a>
         </li>
     </ul>
-    <div class="pageontainer">
-        <div class="mainIndex" >
-            <section>
-                <h2>הרודס מתכונים</h2>
-            </section>
-        </div>
+    <div class="pageContainer">
+        <section>
+            <h2>הרודס מתכונים</h2>
+            <a href="../views/Ingredients.html">
+                <button class="toIngredients"> מצא לי מתכון</button>
+            </a>            
+        </section>
+        <footer>
+            <a href="">
+                <button class="toNewRecipe">מצא לי מתכון</button>
+            </a>
+        </footer>
     </div>
-    
 </body>
 </html>

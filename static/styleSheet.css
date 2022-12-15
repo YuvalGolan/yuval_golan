@@ -4,24 +4,66 @@
   font-family: 'Amatic SC', cursive;
 }
 
-/* width */
+/* the navBar styling*/
+.navBar {
+  display: flex;
+  flex-direction: row-reverse;
+  list-style-type: none;
+  margin:0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  height: 9vh;
+  justify-content: left;
+}
+
+.navBarItem {
+  height: 100%;
+  font-size: 17px;
+}
+
+.navBarItem .navBarLink {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  height: 100%;
+}
+
+.navBarItem .index:hover:not(.active) {
+  background-color: rgb(17, 17, 17, 0.4);
+}
+
+.navBarItem:hover{
+  color: #ccc;
+  opacity: 0.6;
+}
+  
+
+.active {
+  background-color: rgb(197, 186, 136);
+}
+
+/* the scrollbar styling*/
 ::-webkit-scrollbar {
   width: 4px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px grey; 
   border-radius: 10px;
 }
  
-/* Handle */
 ::-webkit-scrollbar-thumb {
   background: rgb(197, 186, 136); 
   border-radius: 10px;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background:  rgb(148, 139, 100); 
 }
@@ -39,6 +81,7 @@ body{
   text-align: center;
 }
 
+/* The ingredients page */
 .pageContainer h2{
   text-shadow: 2px 4px 4px rgb(0, 0, 0, 0.6);
 } 
@@ -46,7 +89,6 @@ body{
 .pageContainer h1{
   text-shadow: 2px 2px 4px rgb(0, 0, 0, 0.6);
 } 
-
 
 .ingredientsContainer{
   display: flex;
@@ -80,7 +122,6 @@ body{
   text-align: right;
 }
 
-/* The ingredients */
 .ingredients {
     display: block;
     position: relative;
@@ -94,7 +135,7 @@ body{
     user-select: none;
   }
   
-  /* Hide the browser's default checkbox */
+  /* Hide the the default checkbox */
   .ingredients input {
     position: absolute;
     opacity: 0;
@@ -103,7 +144,6 @@ body{
     width: 0;
   }
   
-  /* Create a custom checkbox */
   .checkmark {
     position: absolute;
     top: 0;
@@ -113,29 +153,25 @@ body{
     background-color: #eee;
   }
   
-  /* On mouse-over, add a grey background color */
   .ingredients:hover input ~ .checkmark {
     background-color: #ccc;
   }
   
-  /* When the checkbox is checked, add a blue background */
+  /* the blue background when it's checked */
   .ingredients input:checked ~ .checkmark {
     background-color: #2196F3;
   }
   
-  /* Create the checkmark/indicator (hidden when not checked) */
   .checkmark:after {
     content: "";
     position: absolute;
     display: none;
   }
   
-  /* Show the checkmark when checked */
   .ingredients input:checked ~ .checkmark:after {
     display: block;
   }
   
-  /* Style the checkmark/indicator */
   .ingredients .checkmark:after {
     right: 9px;
     top: 5px;
@@ -148,12 +184,7 @@ body{
     transform: rotate(45deg);
   }
 
-  @font-face {
-    font-family: hebrew;
-    src: url(../static/fonts/journal.zip);
-}
-
-
+    /*the Recipes page */
   .breakfast { grid-area: breakfast;  }
   .lunch { grid-area: lunch;  }
   .dinner { grid-area: dinner;  }
@@ -175,7 +206,6 @@ body{
     margin: 1px;
     border-radius: 4px;
   }
-  
 
   button{
     background-color: black;
@@ -240,52 +270,6 @@ body{
     transition: o.8s;
   }
 
-  .navBar {
-    display: flex;
-    flex-direction: row-reverse;
-    list-style-type: none;
-    margin:0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    height: 9vh;
-    justify-content: left;
-
-  }
-  
-  .navBarItem {
-    height: 100%;
-    font-size: 17px;
-  }
-  
-  .navBarItem .navBarLink {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    height: 100%;
-  }
-  
-  .navBarItem .index:hover:not(.active) {
-    background-color: rgb(17, 17, 17, 0.4);
-  }
-
-  .navBarItem:hover{
-    color: #ccc;
-    opacity: 0.6;
-  }
-    
-  
-  
-  .active {
-    background-color: rgb(197, 186, 136);
-  }
-
 section{
   position: absolute;
   top: 0;
@@ -318,7 +302,6 @@ section button{
 
 
 /*specific recipe page*/
-
 .Rcontainer{
   display: grid;
   grid-template-areas: 
@@ -379,5 +362,106 @@ section button{
   align-items: center;
 }
 
+/*the style for the sign in and ADD Recipe */
+input[type=text], input[type=password], input[type=textarea] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+.imgcontainer {
+  text-align: center;
+  margin: 18px 0 8px 0;
+  position: relative;
+}
+
+img.avatar {
+  width: 35%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+.newRecipe{
+  text-align: center;
+  width: 90%;
+  max-width: 720px;
+  border-style: hidden;
+  padding: 1px;
+  margin: 1px;
+  height: 90vh;
+}
+
+
+/* The Modal (background) */
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4); 
+  padding-top: 10vh;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 1% auto 5% auto; 
+  border: 1px solid #888;
+  width: 55%; 
+}
+
+@media only screen and (max-width:850px) {
+  .modal-content {
+    background-color: #fefefe;
+    margin: 1% auto 5% auto; 
+    border: 1px solid #888;
+    width: 65%; 
+  }
+}
+
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)} 
+  to {-webkit-transform: scale(1)}
+}
+  
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+
+
+.cancelContainer{
+ background-color:#f1f1f1;
+ margin: 4px;
+ padding: 10px 18px;
+}
 
 

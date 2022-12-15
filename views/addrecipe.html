@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/styleSheet.css">
+    <script defer src="../static/main.js"></script>
+    <script defer src="../static/signIn.js"></script>
+</head>
+<body>
+    <ul class="navBar">
+        <li class="navBarItem">
+            <a href="../views/html- index.html" class="navBarLink">Home</a>
+        </li>
+        <li class="navBarItem" >
+            <a href="../views/Ingredients.html" class="navBarLink">ingredients</a>
+        </li>
+        <li class="navBarItem">
+            <a href="../views/Recipes.html" class="navBarLink">Recipes</a>
+        </li>
+        <li class="navBarItem">
+            <a href="../views/addrecipe.html" class="navBarLink">Add Recipe</a>
+        </li>
+    </ul>
+    <div class="pageContainer container">
+        <div id="id01" class="modal">
+            
+            <form class="modal-content animate">
+                <div class="imgcontainer">
+                    <img src="../static/pictures/lets cook.jpg" alt="Avatar" class="avatar">
+                </div>
+    
+                <div class="container">
+                    <label for="uname"><b>שם משתמש</b></label>
+                    <input id="userNameInput" type="text" placeholder="הכנס שם משתמש" name="uname" required>
+        
+                    <label for="psw"><b>סיסמה</b></label>
+                    <input id="passwordInput" type="password" placeholder="הכנס סיסמה" name="psw" required>
+                        
+                    <button type="submit" id="login">התחבר</button>
+                </div>
+                <div class="cancelContainer" >
+                    <a href="../views/html- index.html">
+                        <button type="button" class="cancelbtn">ביטול</button>
+                    </a>    
+                </div> 
+            </form>
+        </div>
+        <center>
+            <div class="newRecipe pageContainer">
+                <form>
+                    <label for="rname"><b>שם המתכון</b></label>
+                    <input id="nameInput" type="text" placeholder="הכנס שם מתכון" name="rname" required>
+                    
+                    <label for="ing"><b>מצרכים</b></label>
+                    <div id="addIng">
+                        <input id="ing1" type="text" placeholder="מצרך" name="ing" required>
+                        <button id="addIngBTN">+</button>
+                        <label for="making"><b>הוסף מצרכים</b></label>
+                    </div>
+                    
+                    <label for="making"><b>אופן ההכנה</b></label>
+                    <input id="makingInput" type="textarea" placeholder="כתוב את אופן ההכנה " name="making" required>
+                    
+                    <label for="img"><b>קישור לתמונה</b></label>
+                    <input id="imgInput" type="text" placeholder="הכנס קישור לתמונה" name="img" required>
+                    
+                    <button type="submit" id="submit">צור מתכון!</button>
+                    <div class="cancelContainer" >
+                        <a href="../views/html- index.html">
+                            <button type="button" onclick="" class="cancelbtn">ביטול</button>
+                        </a>    
+                    </div> 
+                </form>
+            </div>
+        </center>
+    </div>
+</body>
+</html>

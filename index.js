@@ -6,21 +6,28 @@ const sql = require('./db/db');
 const CreateDB = require('./db/CreateDB')
 const port = 8080;
 
-app.use(express.static(path.join(__dirname,'static')));
+app.use(express.static(path.join(__dirname)));
 app.use(BodyParser.urlencoded({extended:true}));
 app.use(BodyParser.json());
-app.set('views', path.join(__dirname, 'views'));
+// app.set('views', path.join(__dirname, 'views'));
 
-// routes for app pages
-app.get('/',function(req,res){
-    res.redirect('/home');
+
+app.get("/", (req,res)=>{
+    res.sendFile(__dirname+ '/views/html- index.html');
+});
+app.get("/ingredients", (req,res)=>{
+    res.sendFile(__dirname+ '/views/ingredients.html');
+});
+app.get("/recipes", (req,res)=>{
+    res.sendFile(__dirname+ '/views/Recipes.html');
+});
+app.get("/addrecipe", (req,res)=>{
+    res.sendFile(__dirname+ '/views/addrecipe.html');
+});
+app.get("/:recepieName", (req,res)=>{
+    res.sendFile(__dirname+ `/views/${req.params.recepieName}.html`);
 });
 
-app.get("/home", (req,res)=>{
-    res.render('index', {
-        v1: 'Hi Home Page'
-    })
-});
 
 app.get("/page2", (req,res)=>{
     res.render('index', {

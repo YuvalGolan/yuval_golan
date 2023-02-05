@@ -1,0 +1,21 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="../static/styleSheet.css")
+        script(defer src="https://kit.fontawesome.com/c5ba2e5682.js" crossorigin="anonymous")  
+        script(defer src="../static/main.js" type="module")
+        title מתכון
+    body 
+        ul(class="navBar")
+            li(class="navBarItem")
+                a(href="/" class="navBarLink") Home
+            li(class="navBarItem" )
+                a(href="/ingredients" class="navBarLink") ingredients
+            li(class="navBarItem")
+                a(href="/recipes" class="navBarLink") Recipes
+            li(class="navBarItem")
+                a(href="/addrecipe" class="navBarLink") Add Recipe
+        block content 

@@ -1,0 +1,15 @@
+extends recipeLayout 
+block content
+    div(class="Rcontainer")
+        div(class="pageContainer")       
+            h1 #{recipeName}
+            div(class="RecipeIngredients")
+                h4 מצרכים:
+                ul(style="list-style: none;")
+                    each val in ingridents
+                        li= val
+            div(class="RecipeMaking")
+                h4 אופן הכנה
+                p #{instructions}
+            div(class="DishImage")
+                img(src=dishImg, style="width:100%")

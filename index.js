@@ -2,17 +2,20 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const BodyParser = require('body-parser');
-const sql = require('./db/db');
+const {getRecipe} = require('./db/CRUD');
 const CreateDB = require('./db/CreateDB')
 const port = 8080;
 
 app.use(express.static(path.join(__dirname)));
 app.use(BodyParser.urlencoded({extended:true}));
 app.use(BodyParser.json());
-// app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
 
-
+// Static pages
 app.get("/", (req,res)=>{
+    res.redirect('/home');
+});
+app.get("/home", (req,res)=>{
     res.sendFile(__dirname+ '/views/html- index.html');
 });
 app.get("/ingredients", (req,res)=>{
@@ -24,20 +27,14 @@ app.get("/recipes", (req,res)=>{
 app.get("/addrecipe", (req,res)=>{
     res.sendFile(__dirname+ '/views/addrecipe.html');
 });
-app.get("/:recepieName", (req,res)=>{
-    res.sendFile(__dirname+ `/views/${req.params.recepieName}.html`);
-});
 
-
-app.get("/page2", (req,res)=>{
-    res.render('index', {
-        v1: 'Hi Page 2'
-    })
-});
 
 // routes for creating the DB
 app.all('/CreateTables', CreateDB.createTables); 
 app.all('/InsertDataToTables', CreateDB.InsertData2DB)
+
+
+app.get("/:recepieName", getRecipe);
 
 app.listen(port, ()=>{
     console.log('server is running on port ', port);

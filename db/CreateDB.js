@@ -1,26 +1,50 @@
 const connection = require('./db');
-const csv  = require('csvtojson');
+const csv = require('csvtojson');
 const path = require('path');
 
-const createTables = (req,res)=>{
-    const Q1 = "CREATE TABLE Table187 (UserName VARCHAR(255), UserPassword VARCHAR(255), TimeStamp TIMESTAMP)";
-    const Q2 = "CREATE TABLE recipes (recipeName VARCHAR(200), ingridents VARCHAR(255), instructions VARCHAR(500), dishImg VARCHAR(255))";
-    connection.query(Q1, (err, mysqlres)=>{
-        if (err) {
-            console.log({message: 'users table not created', err});
-            return;
-        }
-        console.log({message: "users table created"})
+//function theat create the table
+
+const createTables = (req, res) => {
+    const Q1 =
+      'CREATE TABLE Table187 (UserName VARCHAR(255), UserPassword VARCHAR(255), TimeStamp TIMESTAMP)';
+    const Q2 =
+      'CREATE TABLE recipes (recipeName VARCHAR(200), ingridents VARCHAR(255), instructions VARCHAR(500), dishImg VARCHAR(5000), recipeType VARCHAR(255))';
+    connection.query(Q1, (err, mysqlres) => {
+      if (err) {
+        console.log({ message: 'users table not created', err });
+        return;
+      }
+      console.log({ message: 'users table created' });
     });
-    connection.query(Q2, (err, mysqlres)=>{
-        if (err) {
-            console.log({message: 'recipes table not created', err});
-            return;
-        }
-        console.log({message: "recipes table created"})
+    connection.query(Q2, (err, mysqlres) => {
+      if (err) {
+        console.log({ message: 'recipes table not created', err });
+        return;
+      }
+      console.log({ message: 'recipes table created' });
     });
-    res.send({message: "Done"});
-};
+    res.send({ message: 'Done' });
+  };
+  
+  const dropTables = (req, res) => {
+    const Q1 = 'DROP TABLE Table187';
+    const Q2 = 'DROP TABLE recipes';
+    connection.query(Q1, (err, mysqlres) => {
+      if (err) {
+        console.log({ message: 'users table not deleted', err });
+        return;
+      }
+      console.log({ message: 'users table deleted' });
+    });
+    connection.query(Q2, (err, mysqlres) => {
+      if (err) {
+        console.log({ message: 'recipes table not deleted', err });
+        return;
+      }
+      console.log({ message: 'recipes table deleted' });
+    });
+    res.send({ message: 'Done' });
+  };
 
 const InsertData2DB = (req,res)=>{
     // var Q2 = "INSERT INTO Table187 SET ?";
@@ -44,30 +68,30 @@ const InsertData2DB = (req,res)=>{
     // });
     // });
     
-    var Q2 = "INSERT INTO recipes SET ?";
-    const reccipesCsvFilePath= path.join(__dirname, "recepies.csv");
-    csv()
+  var Q2 = 'INSERT INTO recipes SET ?';
+  const reccipesCsvFilePath = path.join(__dirname, 'recepies.csv');
+  csv()
     .fromFile(reccipesCsvFilePath)
-    .then((jsonObj)=>{
-    console.log({jsonObj}); // for learning perpose
-    jsonObj.forEach(element => {
+    .then(jsonObj => {
+      console.log({ jsonObj }); // for learning perpose
+      jsonObj.forEach(element => {
         var NewEntry = {
-            "recipeName": element.recipeName,
-            "ingridents": element.ingridents,
-            "instructions": element.instructions,
-            'dishImg': element.dishImg,
+          recipeName: element.recipeName,
+          ingridents: element.ingridents,
+          instructions: element.instructions,
+          dishImg: element.dishImg,
+          recipeType: element.recipeType,
         };
-        connection.query(Q2, NewEntry, (err,mysqlres)=>{
-            if (err) {
-                console.log("error in inserting reccipes data", err);
-            }
-            console.log("created row sucssefuly ");
+        connection.query(Q2, NewEntry, (err, mysqlres) => {
+          if (err) {
+            console.log('error in inserting reccipes data', err);
+          }
+          console.log('created row sucssefuly ');
         });
-    });
+      });
     });
 
-    res.send("data inserted");
-
+  res.send('data inserted');
 };
 
-module.exports={createTables, InsertData2DB}
+module.exports = { createTables, InsertData2DB, dropTables };

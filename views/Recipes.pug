@@ -1,0 +1,27 @@
+extends recipeLayout 
+block content
+    div(class="pageContainer")
+        div(class="RecipesContainer" id="container")
+            ul(class="Recipes" id="Recipes")
+                center
+                    div(class="sectionContainer")
+                        h1 ארוחת בוקר
+                        each val in breakfastRecepies
+                            li(class="RecipesBackground" style=`list-style: none; background-image: url(${val.dishImg})`)
+                                div(class="Otext")
+                                    h3 #{val.recipeName}
+                                    button(class="toRecipe" onclick=`document.location='/${val.recipeName}'`) למתכון
+                    div(class="sectionContainer")
+                        h1 ארוחת צהריים
+                        each val in lunchRecepies
+                            li(class="RecipesBackground" style=`list-style: none; background-image: url(${val.dishImg})`)
+                                div(class="Otext")
+                                    h3 #{val.recipeName}
+                                    button(class="toRecipe" onclick=`document.location='/${val.recipeName}'`) למתכון
+                    div(class="sectionContainer")
+                        h1 ארוחת ערב
+                        each val in dinnerRecepies
+                            li(class="RecipesBackground" style=`list-style: none; background-image: url(${val.dishImg})`)
+                                div(class="Otext")
+                                    h3 #{val.recipeName}
+                                    button(class="toRecipe" onclick=`document.location='/${val.recipeName}'`) למתכון

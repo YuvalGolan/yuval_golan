@@ -50,9 +50,12 @@
         </div>
         <center>
             <div class="newRecipe pageContainer">
-                <form>
+                <form action="/createNewRecipe" method="POST">
                     <label for="rname"><b>שם המתכון</b></label>
                     <input id="nameInput" type="text" placeholder="הכנס שם מתכון" name="rname" required>
+
+                    <label for="recipeType"><b>סוג המתכון</b></label>
+                    <input id="recipeType" type="text" placeholder="הכנס שם מתכון" name="recipeType" required>
                     
                     <label for="ing"><b>מצרכים</b></label>
                     <div id="addIng">

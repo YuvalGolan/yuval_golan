@@ -322,6 +322,9 @@ section button {
 .inItem {
   margin-right: 4px;
 }
+.inItemWrapper {
+  text-align: right;
+}
 
 .RecipeTitle {
   grid-area: header;
@@ -403,12 +406,10 @@ img.avatar {
 
 .newRecipe {
   text-align: center;
-  width: 90%;
-  max-width: 720px;
+  width: 100%;
   border-style: hidden;
-  padding: 1px;
+  padding: 4px;
   margin: 1px;
-  height: 90vh;
 }
 
 /* The Modal (background) */

@@ -9,7 +9,3 @@ const navLinks = document.querySelectorAll('.navBarItem a').forEach(link => {
         link.classList.remove('active');
     }
   });
-
-function toRecipe(recepieName) {
-  window.location = `/${recepieName}`
-}

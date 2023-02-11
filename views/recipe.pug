@@ -8,7 +8,8 @@ block content
                     h4 מצרכים
                     ul(style="list-style: none;")
                         each val in ingridents
-                            li
+                            li(class="inItemWrapper")
+                                i(class="fa-solid fa-utensils")
                                 span(class="inItem") #{val}
                 div(class="RecipeMaking")
                     h4 אופן הכנה

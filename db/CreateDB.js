@@ -6,9 +6,9 @@ const path = require('path');
 
 const createTables = (req, res) => {
     const Q1 =
-      'CREATE TABLE Table187 (UserName VARCHAR(255), UserPassword VARCHAR(255), TimeStamp TIMESTAMP)';
+      'CREATE TABLE users (UserAddress VARCHAR(255), UserPassword VARCHAR(255)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4';
     const Q2 =
-      'CREATE TABLE recipes (recipeName VARCHAR(200), ingridents VARCHAR(255), instructions VARCHAR(500), dishImg VARCHAR(5000), recipeType VARCHAR(255))';
+      'CREATE TABLE recipes (recipeName VARCHAR(200), ingridents VARCHAR(255), instructions VARCHAR(500), dishImg VARCHAR(5000), recipeType VARCHAR(255)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4';
     connection.query(Q1, (err, mysqlres) => {
       if (err) {
         console.log({ message: 'users table not created', err });
@@ -27,7 +27,7 @@ const createTables = (req, res) => {
   };
   
   const dropTables = (req, res) => {
-    const Q1 = 'DROP TABLE Table187';
+    const Q1 = 'DROP TABLE users';
     const Q2 = 'DROP TABLE recipes';
     connection.query(Q1, (err, mysqlres) => {
       if (err) {
@@ -46,27 +46,27 @@ const createTables = (req, res) => {
     res.send({ message: 'Done' });
   };
 
+
 const InsertData2DB = (req,res)=>{
-    // var Q2 = "INSERT INTO Table187 SET ?";
-    // const csvFilePath= path.join(__dirname, "Data.csv");
-    // csv()
-    // .fromFile(csvFilePath)
-    // .then((jsonObj)=>{
-    // console.log(jsonObj); // for learning perpose
-    // jsonObj.forEach(element => {
-    //     var NewEntry = {
-    //         "UserName": element.UserName,
-    //         "UserPassword": element.UserPassword,
-    //         'TimeStamp': element.TimeStamp
-    //     }
-    //     SQL.query(Q2, NewEntry, (err,mysqlres)=>{
-    //         if (err) {
-    //             console.log("error in inserting data", err);
-    //         }
-    //         console.log("created row sucssefuly ");
-    //     });
-    // });
-    // });
+    var Q2 = "INSERT INTO users SET ?";
+    const csvFilePath= path.join(__dirname, "Data.csv");
+    csv()
+    .fromFile(csvFilePath)
+    .then((jsonObj)=>{
+    console.log(jsonObj); // for learning perpose
+    jsonObj.forEach(element => {
+        var NewEntry = {
+            "UserName": element.UserName,
+            "UserPassword": element.UserPassword,
+        }
+        SQL.query(Q2, NewEntry, (err,mysqlres)=>{
+            if (err) {
+                console.log("error in inserting data", err);
+            }
+            console.log("created row sucssefuly ");
+        });
+    });
+    });
     
   var Q2 = 'INSERT INTO recipes SET ?';
   const reccipesCsvFilePath = path.join(__dirname, 'recepies.csv');

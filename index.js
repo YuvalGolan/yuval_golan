@@ -33,6 +33,7 @@ app.all('/InsertDataToTables', CreateDB.InsertData2DB);
 
 app.get('/:recepieName', getRecipe);
 app.post('/addRecipe', createNewRecipes);
+app.post('/login', connectUser);
 
 app.listen(port, () => {
   console.log('server is running on port ', port);

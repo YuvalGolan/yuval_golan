@@ -74,8 +74,8 @@ const createNewUser = (req, res) => {
   }
 
   const newUser = {
-    "UserAddress": req?.body?.users?.UserAddress,
-    "UserPassword": req?.body?.users?.UserPassword
+    "UserAddress": req?.body?.UserAddress,
+    "UserPassword": req?.body?.UserPassword
 };
   
   connection.query('INSERT INTO users SET ?', newUser, (err, mysqlres) => {
@@ -84,55 +84,43 @@ const createNewUser = (req, res) => {
       res.status(400).send({ message: 'error in creating user: ' + err });
       return;
     }
-    console.log('user created: ', { id: mysqlres.insertId, ...newRecipe });
+    console.log('user created: ', { id: mysqlres.insertId, ...newUser });
     res.send({ message: `new user ${users?.UserAddress} created successfully` });
   });
 };
 
-const connectUser = (req, res, next) => {
+const login = (req, res, next) => {
   if (!req.body) {
     res.status(400).send({
       message: 'Content can not be empty!',
     });
   }
 
-  const UserAddress = req?.body?.recipe?.UserAddress;
-  const UserPassword = req?.body?.recipe?.UserPassword;
+  const UserAddress = req?.body?.UserAddress;
+  const UserPassword = req?.body?.UserPassword;
 
   if(UserAddress && UserPassword) {
-      query = `SELECT * FROM users 
-      WHERE UserAddress = "${UserAddress}" `;
-
-      connection.query(query, function(error, data){
-
-          if(data.length > 0){
-              for(var count = 0; count < data.length; count++)
-              {
-                  if(data[count].UserPassword == UserPassword)
-                  {
-                      res.redirect("/");
-                  }
-                  else
-                  {
-                      res.send('Incorrect Password');
+      const query = `SELECT * FROM users WHERE UserAddress = "${UserAddress}" `;
+      connection.query(query, (error, data) => {
+          if(data.length > 0) {
+              for(let count = 0; count < data.length; count++) {
+                  if(data[count].UserPassword == UserPassword) {
+                      res.send("success");
+                  } else {
+                    res.status(401).send({message: 'Incorrect Password'});
                   }
               }
-          }
-          else
-          {
-              res.send('Incorrect Email Address');
+          } else {
+              res.status(401).send({message: 'Incorrect Email Address'});
           }
           res.end();
       });
-  }
-  else
-  {
-      res.send('Please Enter Email Address and Password Details');
-      res.end();
+  } else {
+      res.status(400).send({message: 'Please Enter Email Address and Password Details'});
   }
 
-});
+};
   
 
 
-module.exports = { getRecipe, getAllRecipes, createNewRecipes, createNewUser, connectUser };
+module.exports = { getRecipe, getAllRecipes, createNewRecipes, createNewUser, login};

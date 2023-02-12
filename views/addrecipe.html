@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../static/styleSheet.css" />
     <script defer src="../static/main.js" type="module"></script>
     <script defer src="../static/signIn.js" type="module"></script>
-    <script defer src="../static//addRecipe.js" type="module"></script>
+    <script defer src="../static/addRecipe.js" type="module"></script>
   </head>
   <body>
     <ul class="navBar">
@@ -23,8 +23,8 @@
       </li>
     </ul>
     <div class="pageContainer container">
-      <!-- <div id="id01" class="modal"> -->
-      <!-- <form class="modal-content animate">
+      <div id="id01" class="modal">
+        <form class="modal-content animate">
           <div class="imgcontainer">
             <img src="../static/pictures/lets cook.jpg" alt="Avatar" class="avatar" />
           </div>
@@ -33,8 +33,8 @@
             <label for="uname"><b>שם משתמש</b></label>
             <input
               id="userNameInput"
-              type="text"
-              placeholder="הכנס שם משתמש"
+              type="email"
+              placeholder="הכנס אימייל"
               name="uname"
               required
             />
@@ -49,14 +49,15 @@
             />
 
             <button type="submit" id="login">התחבר</button>
+            <button type="submit" id="signIn">הירשם</button>
           </div>
           <div class="cancelContainer">
             <a href="../views/html- index.html">
               <button type="button" class="cancelbtn">ביטול</button>
             </a>
           </div>
-        </form> -->
-      <!-- </div> -->
+        </form>
+      </div>
       <center>
         <div class="newRecipe pageContainer">
           <h1>הוספת מתכון</h1>

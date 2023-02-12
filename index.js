@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const BodyParser = require('body-parser');
-const { getRecipe, getAllRecipes, createNewRecipes } = require('./db/CRUD');
+const { getRecipe, getAllRecipes, createNewRecipes, createNewUser,login} = require('./db/CRUD');
 const CreateDB = require('./db/CreateDB');
 const port = 8080;
 
@@ -33,7 +33,8 @@ app.all('/InsertDataToTables', CreateDB.InsertData2DB);
 
 app.get('/:recepieName', getRecipe);
 app.post('/addRecipe', createNewRecipes);
-app.post('/login', connectUser);
+app.post('/login', login);
+app.post('/signIn', createNewUser);
 
 app.listen(port, () => {
   console.log('server is running on port ', port);

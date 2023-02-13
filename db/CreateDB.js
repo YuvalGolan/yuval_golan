@@ -48,7 +48,7 @@ const createTables = (req, res) => {
 
 
 const InsertData2DB = (req,res)=>{
-    var Q2 = "INSERT INTO users SET ?";
+    var Q1 = "INSERT INTO users SET ?";
     const csvFilePath= path.join(__dirname, "Data.csv");
     csv()
     .fromFile(csvFilePath)
@@ -59,7 +59,7 @@ const InsertData2DB = (req,res)=>{
             "UserName": element.UserName,
             "UserPassword": element.UserPassword,
         }
-        SQL.query(Q2, NewEntry, (err,mysqlres)=>{
+        SQL.query(Q1, NewEntry, (err,mysqlres)=>{
             if (err) {
                 console.log("error in inserting data", err);
             }
@@ -94,4 +94,31 @@ const InsertData2DB = (req,res)=>{
   res.send('data inserted');
 };
 
-module.exports = { createTables, InsertData2DB, dropTables };
+
+const showAll = (req,res)=>{
+  const Q1 = "SELECT * FROM users";
+  connection.query(Q1, (err, mysqlres)=>{
+      if (err) {
+          console.log("error:", err);
+          res.status(400).send({message: "error in selecting all users " + err});
+          return;
+      };
+      console.log("success in selecting all users");
+      res.send(mysqlres);
+      return;
+  })
+
+  const Q2 = "SELECT * FROM recipes";
+  connection.query(Q2, (err, mysqlres)=>{
+      if (err) {
+          console.log("error:", err);
+          res.status(400).send({message: "error in selecting all recipes " + err});
+          return;
+      };
+      console.log("success in selecting all recipes");
+      res.send(mysqlres);
+      return;
+  })
+};
+
+module.exports = { createTables, InsertData2DB, dropTables, showAll };

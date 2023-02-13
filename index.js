@@ -30,6 +30,8 @@ app.get('/addrecipe', (req, res) => {
 app.all('/CreateTables', CreateDB.createTables);
 app.all('/DropTables', CreateDB.dropTables);
 app.all('/InsertDataToTables', CreateDB.InsertData2DB);
+app.all('/InsertDataToTables', CreateDB.showAll);
+
 
 app.get('/:recepieName', getRecipe);
 app.post('/addRecipe', createNewRecipes);

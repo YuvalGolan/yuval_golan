@@ -2,8 +2,9 @@
 const modal = document.getElementById('id01');
 const userNameInput = document.getElementById('userNameInput');
 const passwordInput = document.getElementById('passwordInput');
-const BASE_URL = 'http://localhost:8080';
+const BASE_URL = 'http://localhost:3000';
 
+console.log(window.sessionStorage.getItem("userName"));
 if (!window.sessionStorage.getItem("userName")) {
   modal.style.display = 'block';
 } else {
@@ -11,15 +12,11 @@ if (!window.sessionStorage.getItem("userName")) {
 }
 
 const onLogin = async () => {
-  console.log("HEREEEE");
   const requestBody = {
     UserAddress: userNameInput.value,
     UserPassword: passwordInput.value
   }
-  console.log({requestBody});
-
-  try {
-    const response = await fetch(`${BASE_URL}/login`, {
+  const response = await fetch(`${BASE_URL}/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -27,18 +24,18 @@ const onLogin = async () => {
       body: JSON.stringify(requestBody),
     });
 
-  } catch(err) {
-    console.log(err)
-    alert(err.mesasge);
-    return;
-  }
+    if (response?.status === 200) {
+      console.log("HERE");
+      window.sessionStorage.setItem("userName", requestBody.UserAddress);
 
-  
-  window.sessionStorage.setItem("userName", requestBody.UserAddress);
+      userNameInput.value = '';
+      passwordInput.value = '';
 
-  userNameInput.value = '';
-  passwordInput.value = '';
-};
+    } else {
+      const data = await response.json();
+      alert(data?.message);
+    }
+}
 
 const signIn = async () => {
   const requestBody = {
@@ -46,24 +43,39 @@ const signIn = async () => {
     UserPassword: passwordInput.value
   }
 
-  try {
+  // try{
     const response = await fetch(`${BASE_URL}/signIn`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(requestBody),
-    });
-
-  } catch(err) {
-    alert(err.mesasge);
-    return;
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+      });
+      console.log("before")
+      if(response?.status === 200) {
+        console.log("in the signIN")
+        userNameInput.value = '';
+        passwordInput.value = '';
+        alert("נרשמת בהצלחה לאתר, עכשיו תתחבר");
+      } else {
+        const data = await response.json();
+        alert(data?.message);
+      }
   }
-
-  userNameInput.value = '';
-  passwordInput.value = '';
-  alert("נרשמת בהצלחה לאתר");
-};
+  //     catch(error){
+  //     console.log(error)
+  //   };
+  // };
+    
+  //   if (response?.status === 200) {
+  //     userNameInput.value = '';
+  //     passwordInput.value = '';
+  //     alert("נרשמת בהצלחה לאתר, עכשיו תתחבר");
+  //   } else {
+  //     const data = await response.json();
+  //     alert(data?.message);
+  //   }
+  // };
 
 document.getElementById('login').addEventListener('click', () => {
   onLogin();

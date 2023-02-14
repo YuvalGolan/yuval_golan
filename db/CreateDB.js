@@ -8,7 +8,7 @@ const createTables = (req, res) => {
     const Q1 =
       'CREATE TABLE users (UserAddress VARCHAR(255), UserPassword VARCHAR(255)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4';
     const Q2 =
-      'CREATE TABLE recipes (recipeName VARCHAR(200), ingridents VARCHAR(255), instructions VARCHAR(500), dishImg VARCHAR(5000), recipeType VARCHAR(255)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4';
+      'CREATE TABLE recipes (recipeName VARCHAR(200), ingridents VARCHAR(255), instructions VARCHAR(500), dishImg VARCHAR(5000), recipeType VARCHAR(255)) ENGINE=InnoDB DEFAULT CHARSET=utf8;';
     connection.query(Q1, (err, mysqlres) => {
       if (err) {
         console.log({ message: 'users table not created', err });
@@ -95,7 +95,7 @@ const InsertData2DB = (req,res)=>{
 };
 
 
-const showAll = (req,res)=>{
+const showAllUsers = (req,res)=>{
   const Q1 = "SELECT * FROM users";
   connection.query(Q1, (err, mysqlres)=>{
       if (err) {
@@ -107,7 +107,9 @@ const showAll = (req,res)=>{
       res.send(mysqlres);
       return;
   })
+};
 
+const showAllRecipes = (req,res)=>{
   const Q2 = "SELECT * FROM recipes";
   connection.query(Q2, (err, mysqlres)=>{
       if (err) {
@@ -121,4 +123,4 @@ const showAll = (req,res)=>{
   })
 };
 
-module.exports = { createTables, InsertData2DB, dropTables, showAll };
+module.exports = { createTables, InsertData2DB, dropTables, showAllUsers, showAllRecipes };

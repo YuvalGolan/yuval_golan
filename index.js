@@ -2,9 +2,10 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const BodyParser = require('body-parser');
-const { getRecipe, getAllRecipes, createNewRecipes, createNewUser,login} = require('./db/CRUD');
+const { getRecipe, getAllRecipes, createNewRecipes, deleteRecipe,  createNewUser,login} = require('./db/CRUD');
 const CreateDB = require('./db/CreateDB');
-const port = 8080;
+const {errorHandlerMiddleware} = require('./server/errorMiddleware');
+const port = 3000;
 
 app.use(express.static(path.join(__dirname)));
 app.use(BodyParser.urlencoded({ extended: true }));
@@ -27,16 +28,20 @@ app.get('/addrecipe', (req, res) => {
 });
 
 // routes for creating the DB
-app.all('/CreateTables', CreateDB.createTables);
-app.all('/DropTables', CreateDB.dropTables);
-app.all('/InsertDataToTables', CreateDB.InsertData2DB);
-app.all('/InsertDataToTables', CreateDB.showAll);
+app.get('/CreateTables', CreateDB.createTables);
+app.get('/DropTables', CreateDB.dropTables);
+app.get('/InsertDataToTables', CreateDB.InsertData2DB);
+app.get('/showAllUsers', CreateDB.showAllUsers);
+app.get('/showAllRecipes', CreateDB.showAllRecipes);
 
 
 app.get('/:recepieName', getRecipe);
+app.all('/delete/:recepieName', deleteRecipe);
 app.post('/addRecipe', createNewRecipes);
 app.post('/login', login);
 app.post('/signIn', createNewUser);
+
+app.use(errorHandlerMiddleware);
 
 app.listen(port, () => {
   console.log('server is running on port ', port);

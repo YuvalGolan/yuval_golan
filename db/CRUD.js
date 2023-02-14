@@ -6,7 +6,7 @@ const getRecipe = (req, res) => {
   const name = req.params.recepieName;
   connection.query('SELECT * FROM recipes WHERE recipeName like ?', name + '%', (err, mysqlres) => {
     if (err) {
-      res.status(400).send({ message: err });
+      throw {status: 400, message: err };
       return;
     }
 
@@ -28,8 +28,7 @@ const getRecipe = (req, res) => {
 const getAllRecipes = async (req, res) => {
   connection.query('SELECT * FROM recipes', (err, mysqlres) => {
     if (err) {
-      res.status(400).send({ message: err });
-      return;
+      throw {status: 400, message: err };
     }
     res.render(path.join(__dirname, '../views/Recipes.pug'), {
       breakfastRecepies: mysqlres?.filter(({ recipeType }) => recipeType === 'Breakfast') || [],
@@ -41,9 +40,7 @@ const getAllRecipes = async (req, res) => {
 
 const createNewRecipes = (req, res) => {
   if (!req.body) {
-    res.status(400).send({
-      message: 'Content can not be empty!',
-    });
+    throw {status: 400, message: 'Content can not be empty!'};
   }
 
   const recipe = req?.body?.recipe;
@@ -57,20 +54,34 @@ const createNewRecipes = (req, res) => {
   connection.query('INSERT INTO recipes SET ?', newRecipe, (err, mysqlres) => {
     if (err) {
       console.log('error: ', err);
-      res.status(400).send({ message: 'error in creating recipe: ' + err });
-      return;
+      throw {status: 400, message:'error in creating recipe: ' + err };
     }
     console.log('created recipe: ', { id: mysqlres.insertId, ...newRecipe });
     res.send({ message: `new recipe ${recipe?.recipeName} created successfully` });
   });
 };
 
+//delete function- to delete recipe that I don't want in the recipes
+const deleteRecipe = (req, res) => {
+  if (!req.body) {
+    throw {status: 400, message: 'Content can not be empty!'};
+  }
+  const name = req.params.recepieName;
+  connection.query('DELETE FROM recipes WHERE recipeName like ?', name + '%', (err, mysqlres) => {
+    if (err) {
+      throw {status: 400, message: err };
+      return;
+    }
+    res.send({ message: "recipe: " + name + " deleted" });
+
+  });
+};
+
+
 //user functions
 const createNewUser = (req, res) => {
   if (!req.body) {
-    res.status(400).send({
-      message: 'Content can not be empty!',
-    });
+    throw {status: 400, message: 'Content can not be empty!'};
   }
 
   const newUser = {
@@ -81,24 +92,21 @@ const createNewUser = (req, res) => {
   connection.query('INSERT INTO users SET ?', newUser, (err, mysqlres) => {
     if (err) {
       console.log('error: ', err);
-      res.status(400).send({ message: 'error in creating user: ' + err });
+      throw {status: 400, message: 'error in creating user: ' + err };
       return;
     }
     console.log('user created: ', { id: mysqlres.insertId, ...newUser });
-    res.send({ message: `new user ${users?.UserAddress} created successfully` });
+    res.send({ message: "new user "+ newUser + "created successfully" });
   });
 };
 
 const login = (req, res, next) => {
   if (!req.body) {
-    res.status(400).send({
-      message: 'Content can not be empty!',
-    });
+    throw {status: 400, message: 'Content can not be empty!'};
   }
 
   const UserAddress = req?.body?.UserAddress;
   const UserPassword = req?.body?.UserPassword;
-
   if(UserAddress && UserPassword) {
       const query = `SELECT * FROM users WHERE UserAddress = "${UserAddress}" `;
       connection.query(query, (error, data) => {
@@ -106,21 +114,21 @@ const login = (req, res, next) => {
               for(let count = 0; count < data.length; count++) {
                   if(data[count].UserPassword == UserPassword) {
                       res.send("success");
-                  } else {
-                    res.status(401).send({message: 'Incorrect Password'});
+                      return;
                   }
               }
+              res.status(401).send({ message: 'Incorrect Password'});
           } else {
-              res.status(401).send({message: 'Incorrect Email Address'});
+            res.status(401).send({ message: 'Incorrect Email Address'});
           }
           res.end();
       });
   } else {
-      res.status(400).send({message: 'Please Enter Email Address and Password Details'});
+    throw {status: 400, message: 'Please Enter Email Address and Password Details'};
   }
 
 };
   
 
 
-module.exports = { getRecipe, getAllRecipes, createNewRecipes, createNewUser, login};
+module.exports = { getRecipe, getAllRecipes, createNewRecipes, deleteRecipe, createNewUser, login};

@@ -1,0 +1,46 @@
+Module:
+* pug
+* Express
+* body-parser
+* cors
+* csvtojson
+* nodemon
+* Mysql2
+Installation
+1. clone this repo <reolace with your repo link>
+2. make sure you have mySqlServer installed and running
+3. configure your db with user name and password
+4. Add inside db folder a file called config.db.js paste this object and fill in your details
+<paste here the config object with pkaceholders>
+5. run npm i to install dependencis
+6. To run the server run
+- npm run dev - for development mode
+- npm start - for reading 
+7. Go to http://localhost:3000 on your browser
+
+To inserst default data you will need to feel this steps:
+1. go to http://localhost:3000/CreateTables - to create the relevant tables
+2. Go to http://localhost:3000/InsertDataInTables - to insert the data.
+
+
+ API Endpoints
+* /CreateTables : creates the tables
+* /InsertDataToTables : insert the data into the tables
+* /DropTables : drop the tables
+* /showAllUsers: watch the table
+* /showAllRecipes: watch the table
+
+* /:recepieName : get a specific recipe as in the name in the DB
+o If the recipe name Not found in the database, so a page of Not found will appear
+* /delete/:recepieName : delete the specific recipe as in the name in the DB- this function doesn’t connect to any button, it’s just for adding the option.
+* /addRecipe : the page for adding new recipe
+* /home : the index page
+* /recipes : the page with all the recipes divided by types
+* 
+Create Tables
+const Q1 =
+      'CREATE TABLE users (UserAddress VARCHAR(255), UserPassword VARCHAR(255)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4';
+    const Q2 =
+      'CREATE TABLE recipes (recipeName VARCHAR(200), ingridents VARCHAR(255), instructions VARCHAR(500), dishImg VARCHAR(5000), recipeType VARCHAR(255)) ENGINE=InnoDB DEFAULT CHARSET=utf8;';
+  
+

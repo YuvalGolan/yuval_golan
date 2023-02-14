@@ -25,7 +25,6 @@ const onLogin = async () => {
     });
 
     if (response?.status === 200) {
-      console.log("HERE");
       window.sessionStorage.setItem("userName", requestBody.UserAddress);
 
       userNameInput.value = '';
@@ -51,9 +50,7 @@ const signIn = async () => {
         },
         body: JSON.stringify(requestBody),
       });
-      console.log("before")
       if(response?.status === 200) {
-        console.log("in the signIN")
         userNameInput.value = '';
         passwordInput.value = '';
         alert("נרשמת בהצלחה לאתר, עכשיו תתחבר");
@@ -62,20 +59,7 @@ const signIn = async () => {
         alert(data?.message);
       }
   }
-  //     catch(error){
-  //     console.log(error)
-  //   };
-  // };
-    
-  //   if (response?.status === 200) {
-  //     userNameInput.value = '';
-  //     passwordInput.value = '';
-  //     alert("נרשמת בהצלחה לאתר, עכשיו תתחבר");
-  //   } else {
-  //     const data = await response.json();
-  //     alert(data?.message);
-  //   }
-  // };
+ 
 
 document.getElementById('login').addEventListener('click', () => {
   onLogin();
